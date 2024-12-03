@@ -13,7 +13,14 @@
     background-image: url('./assets/bg-header.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: top
+    background-position: top;
+}
+
+.bg-error {
+    background-image: url('./assets/bg-error.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 @tailwind base;
