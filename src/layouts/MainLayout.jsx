@@ -1,7 +1,9 @@
+import Navbar from "../components/Navbar";
+
 const MainLayout = () => {
     return (
-        <div>
-            Hello Chill Gamers!
+        <div className="bg-header">
+            <Navbar></Navbar>
         </div>
     );
 };
