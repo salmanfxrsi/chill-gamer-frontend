@@ -15,7 +15,7 @@ const Banner = () => {
           user-friendly interface.
         </p>
         <div className="flex gap-4 mt-8">
-          <Link to={"/login"} className="btn btn-warning">
+          <Link to={"/login"} className="btn btn-warning btn-outline">
             Login Now
           </Link>
           <Link

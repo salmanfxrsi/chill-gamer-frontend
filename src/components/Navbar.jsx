@@ -16,7 +16,11 @@ const Navbar = () => {
       <div className="navbar container mx-auto py-6">
         <div className="navbar-start flex gap-2">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-warning bg-transparent lg:hidden text-warning hover:text-black">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-warning bg-transparent lg:hidden text-warning hover:text-black"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -51,7 +55,17 @@ const Navbar = () => {
             {links}
           </div>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end flex gap-4 items-center">
+          <div
+            className="tooltip tooltip-warning tooltip-bottom mt-2"
+            data-tip="Salman Farsi"
+          >
+            <div className="avatar online hover:cursor-pointer">
+              <div className="w-12 rounded-full">
+                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              </div>
+            </div>
+          </div>
           <button className="btn btn-outline btn-warning">Login</button>
         </div>
       </div>
