@@ -13,7 +13,7 @@
     background-image: url('./assets/bg-header.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: top;
+    background-position: bottom;
 }
 
 .bg-error {
@@ -34,7 +34,7 @@
     background-image: url('./assets/bg-header.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: bottom;
+    background-position: top;
 }
 
 @tailwind base;

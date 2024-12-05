@@ -1,12 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const email = "talhaxprivate@gmail.com"
+
   const links = (
     <>
       <NavLink to={"/"}>Home</NavLink>
       <NavLink to={"/reviews"}>All Reviews</NavLink>
       <NavLink to={"/add-review"}>Add Review</NavLink>
-      <NavLink to={"/my-reviews"}>My Reviews</NavLink>
+      <NavLink to={`/my-reviews/${email}`}>My Reviews</NavLink>
       <NavLink to={"/game-watchList"}>Game WatchList</NavLink>
     </>
   );
@@ -66,7 +68,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-          <button className="btn btn-outline btn-warning">Login</button>
+          <Link className="btn btn-outline btn-warning">Login</Link>
         </div>
       </div>
     </div>
