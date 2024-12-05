@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const ErrorLayout = () => {
+    useEffect(()=>{
+        document.title = "Chill Gamer - 404"
+      },[])
+
     return (
         <div className="bg-error h-screen py-96">
             <h1 className="text-6xl font-bold text-white mb-4 text-center">Page Not <span className="text-[#FFC536]">Found</span></h1>

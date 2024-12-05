@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import { Bounce, toast } from "react-toastify";
 
 const AddReviewLayout = () => {
   const genres = ["Action", "RPG", "Adventure", "Strategy", "Sports"];
+
+  useEffect(()=>{
+    document.title = "Chill Gamer - Add Review"
+  },[])
 
   const handleSubmit = (e) => {
     e.preventDefault();

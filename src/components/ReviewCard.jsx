@@ -19,12 +19,15 @@ const ReviewCard = ({ review }) => {
         <small className="card-title text-white text-base">
           Category: {genre}
         </small>
+        <div className="flex items-center gap-2">
         <ReactStars
           value={rating}
           onChange={false}
           size={24}
           color2={"#ffd700"}
         />
+        <h1 className="text-warning">{rating}</h1>
+        </div>
         <div className="card-actions">
           <Link
             to={`/reviews/${_id}`}

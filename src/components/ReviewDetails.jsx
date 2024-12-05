@@ -1,17 +1,21 @@
+import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import ReactStars from "react-stars";
 
-const ReviewDetails = id => {
+const ReviewDetails = (id) => {
+  useEffect(() => {
+    document.title = `Chill Gamer - ${gameTitle}`;
+  }, [gameTitle]);
 
-    const handleWatchLater = () => {
-        fetch(`/reviews/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(true)
-        })
-    }
+  const handleWatchLater = () => {
+    fetch(`/reviews/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(true),
+    });
+  };
 
   const {
     _id,
@@ -31,12 +35,8 @@ const ReviewDetails = id => {
         <img src={coverImage} className="max-w-sm rounded-lg shadow-2xl" />
         <div>
           <div className="flex gap-4 mb-4">
-            <div className="badge badge-warning gap-2">
-              {userName}
-            </div>
-            <div className="badge badge-warning gap-2">
-              {email}
-            </div>
+            <div className="badge badge-warning gap-2">{userName}</div>
+            <div className="badge badge-warning gap-2">{email}</div>
           </div>
           <ReactStars
             value={rating}
@@ -49,10 +49,15 @@ const ReviewDetails = id => {
             Category: {genre}
           </small>
           <small className="card-title text-white text-base mt-1">
-          Published In: {publishingYear}
+            Published In: {publishingYear}
           </small>
           <p className=" text-white mt-1">{reviewDescription}</p>
-          <button onClick={()=>handleWatchLater(_id)} className="btn btn-warning btn-outline mt-4">Watch Later</button>
+          <button
+            onClick={() => handleWatchLater(_id)}
+            className="btn btn-warning btn-outline mt-4"
+          >
+            Watch Later
+          </button>
         </div>
       </div>
     </div>

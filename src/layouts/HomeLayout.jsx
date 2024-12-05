@@ -3,9 +3,14 @@ import Slider from "../components/Slider";
 import Stat from "../components/Stat";
 import ReviewCard from "../components/ReviewCard";
 import Trending from "../components/Trending";
+import { useEffect } from "react";
 
 const HomeLayout = () => {
   const data = useLoaderData();
+
+  useEffect(()=>{
+    document.title = "Chill Gamer - Home"
+  },[])
 
   return (
     <div>

@@ -1,8 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 import ReviewCard from "../components/ReviewCard";
+import { useEffect } from "react";
 
 const AllReviewsLayout = () => {
   const data = useLoaderData();
+  
+  useEffect(()=>{
+    document.title = "Chill Gamer - All Reviews"
+  },[])
 
   return (
     <div className="flex items-center py-24">

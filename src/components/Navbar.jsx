@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import SwapButton from "./SwapButton";
 
 const Navbar = () => {
   const email = "talhaxprivate@gmail.com"
@@ -58,6 +59,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-end flex gap-4 items-center">
+          <SwapButton></SwapButton>
           <div
             className="tooltip tooltip-warning tooltip-bottom mt-2"
             data-tip="Salman Farsi"
