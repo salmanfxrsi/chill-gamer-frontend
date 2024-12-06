@@ -1,9 +1,10 @@
 import { useLoaderData } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import MyReviewsCard from "../components/MyReviewsCard";
 
 const MyReviewsLayout = () => {
   const data = useLoaderData();
+  const [myReviews,setMyReviews] = useState(data);
 
   useEffect(() => {
     document.title = "Chill Gamer - My Reviews";
@@ -23,11 +24,14 @@ const MyReviewsLayout = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((review, index) => (
+          {myReviews.map((review, index) => (
             <MyReviewsCard
               key={review.id}
               index={index}
               review={review}
+              setMyReviews={setMyReviews}
+              myReviews={myReviews}
+              data={data}
             ></MyReviewsCard>
           ))}
         </tbody>

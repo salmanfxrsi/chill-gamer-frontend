@@ -3,8 +3,21 @@ import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import ReactStars from "react-stars";
 
-const MyReviewsCard = ({ review, index }) => {
-  const { coverImage, gameTitle, rating, genre } = review;
+const MyReviewsCard = ({ review, index, setMyReviews, data }) => {
+  const { _id, coverImage, gameTitle, rating, genre } = review;
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/delete-reviews/${id}`,{
+        method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(result => {
+        if(result.deletedCount > 0){
+            alert('Deleted Successfully')
+            setMyReviews(data.filter(review=>review._id !== id))
+        }
+    })
+  }
 
   return (
     <tr>
@@ -36,7 +49,7 @@ const MyReviewsCard = ({ review, index }) => {
         </button>
       </th>
       <th>
-        <button className="text-white text-xl">
+        <button onClick={()=>handleDelete(_id)} className="text-white text-xl">
           <AiFillDelete />
         </button>
       </th>
@@ -47,6 +60,8 @@ const MyReviewsCard = ({ review, index }) => {
 MyReviewsCard.propTypes = {
   review: PropTypes.object,
   index: PropTypes.number,
+  data: PropTypes.object,
+  setMyReviews: PropTypes.func
 };
 
 export default MyReviewsCard;
