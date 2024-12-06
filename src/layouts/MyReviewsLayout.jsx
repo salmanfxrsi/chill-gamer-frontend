@@ -1,23 +1,39 @@
 import { useLoaderData } from "react-router-dom";
-import ReviewCard from "../components/ReviewCard";
 import { useEffect } from "react";
+import MyReviewsCard from "../components/MyReviewsCard";
 
 const MyReviewsLayout = () => {
-    const data = useLoaderData();
+  const data = useLoaderData();
 
-    useEffect(()=>{
-      document.title = "Chill Gamer - My Reviews"
-    },[])
+  useEffect(() => {
+    document.title = "Chill Gamer - My Reviews";
+  }, []);
 
-    return (
-        <div className="flex items-center py-24">
-      <div className="container mx-auto grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 justify-center gap-12">
-        {data.map((review) => (
-          <ReviewCard key={review._id} review={review}></ReviewCard>
-        ))}
-      </div>
+  return (
+    <div className="overflow-x-auto">
+      <table className="table">
+        <thead>
+          <tr>
+            <th className="text-white">Serial</th>
+            <th className="text-white">Name</th>
+            <th className="text-white">Rating</th>
+            <th className="text-white">Update</th>
+            <th className="text-white">Delete</th>
+            <th className="text-white"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((review, index) => (
+            <MyReviewsCard
+              key={review.id}
+              index={index}
+              review={review}
+            ></MyReviewsCard>
+          ))}
+        </tbody>
+      </table>
     </div>
-    );
+  );
 };
 
 export default MyReviewsLayout;
