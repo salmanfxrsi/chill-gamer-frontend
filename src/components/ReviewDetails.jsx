@@ -5,7 +5,7 @@ import ReactStars from "react-stars";
 const ReviewDetails = (id) => {
   useEffect(() => {
     document.title = `Chill Gamer - ${gameTitle}`;
-  }, [gameTitle]);
+  }, []);
 
   const handleWatchLater = () => {
     fetch(`/reviews/${id}`, {

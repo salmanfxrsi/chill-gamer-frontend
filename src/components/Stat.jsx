@@ -62,7 +62,7 @@ const Stat = ({ data }) => {
 };
 
 Stat.propTypes = {
-    data: PropTypes.object
+    data: PropTypes.array
 }
-
+ 
 export default Stat;
