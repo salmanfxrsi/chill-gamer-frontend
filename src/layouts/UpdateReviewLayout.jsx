@@ -1,12 +1,25 @@
 import { useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
 import { Bounce, toast } from "react-toastify";
 
-const AddReviewLayout = () => {
+const UpdateReviewLayout = () => {
   const genres = ["Action", "RPG", "Adventure", "Strategy", "Sports"];
+  const data = useLoaderData();
+  const {
+    _id,
+    coverImage,
+    gameTitle,
+    rating,
+    genre,
+    reviewDescription,
+    publishingYear,
+    email,
+    userName,
+  } = data;
 
-  useEffect(()=>{
-    document.title = "Chill Gamer - Add Review"
-  },[])
+  useEffect(() => {
+    document.title = "Chill Gamer - Update Review";
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,27 +32,27 @@ const AddReviewLayout = () => {
     const genre = form.genre.value;
     const email = form.email.value;
     const userName = form.userName.value;
-    const review = {
-      coverImage: coverImage,
-      gameTitle: gameTitle,
-      reviewDescription: reviewDescription,
-      rating: rating,
-      publishingYear: publishingYear,
-      genre: genre,
-      email: email,
-      userName: userName,
+    const updatedReview = {
+      coverImage,
+      gameTitle,
+      reviewDescription,
+      rating,
+      publishingYear,
+      genre,
+      email,
+      userName,
     };
-    fetch("https://chill-gamer-server-one.vercel.app/reviews", {
-      method: "POST",
+    fetch(`https://chill-gamer-server-one.vercel.app/update-review/${_id}`, {
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(review),
+      body: JSON.stringify(updatedReview),
     })
       .then((response) => response.json())
       .then((result) => {
-        if (result.acknowledged) {
-          toast.success("Wow review added!", {
+        if (result.modifiedCount > 0) {
+          toast.success("Review Updated!", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -50,7 +63,18 @@ const AddReviewLayout = () => {
             theme: "dark",
             transition: Bounce,
           });
-          console.log(result);
+        } else {
+          toast.warning("Change Something For Update!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          });
         }
       });
   };
@@ -60,8 +84,8 @@ const AddReviewLayout = () => {
       onSubmit={handleSubmit}
       className="p-4 w-11/12 lg:container mx-auto bg-form shadow-md rounded my-24 bg-opacity-80"
     >
-      <h2 className="text-2xl font-extrabold mb-10 text-center text-[#FFC536]">
-        Submit Game Review
+      <h2 className="text-2xl font-extrabold mb-10 text-center text-warning">
+        Update {gameTitle}
       </h2>
 
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
@@ -75,6 +99,7 @@ const AddReviewLayout = () => {
             className="w-full p-2 border rounded"
             placeholder="https://example.com/game-cover.jpg"
             required
+            defaultValue={coverImage}
           />
         </div>
 
@@ -88,6 +113,7 @@ const AddReviewLayout = () => {
             className="w-full p-2 border rounded"
             placeholder="Enter game title"
             required
+            defaultValue={gameTitle}
           />
         </div>
 
@@ -101,6 +127,7 @@ const AddReviewLayout = () => {
             rows="4"
             placeholder="Write your detailed review here..."
             required
+            defaultValue={reviewDescription}
           ></textarea>
         </div>
 
@@ -114,6 +141,7 @@ const AddReviewLayout = () => {
             max="10"
             placeholder="Rate between 1-10"
             required
+            defaultValue={rating}
           />
         </div>
 
@@ -127,12 +155,18 @@ const AddReviewLayout = () => {
             className="w-full p-2 border rounded"
             placeholder="e.g., 2024"
             required
+            defaultValue={publishingYear}
           />
         </div>
 
         <div className="mb-4">
           <label className="block font-medium mb-2 text-white">Genre</label>
-          <select name="genre" className="w-full p-2 border rounded" required>
+          <select
+            name="genre"
+            className="w-full p-2 border rounded"
+            required
+            defaultValue={genre}
+          >
             <option value="" disabled>
               Select Genre
             </option>
@@ -154,6 +188,7 @@ const AddReviewLayout = () => {
             value={"rumaxprivate@gmail.com"}
             readOnly
             className="w-full p-2 border rounded bg-gray-200 cursor-not-allowed"
+            defaultValue={email}
           />
         </div>
 
@@ -165,14 +200,15 @@ const AddReviewLayout = () => {
             value={"rumaakther"}
             readOnly
             className="w-full p-2 border rounded bg-gray-200 cursor-not-allowed"
+            defaultValue={userName}
           />
         </div>
       </div>
       <button type="submit" className="btn btn-warning btn-outline w-full">
-        Submit Review
+        Update Review
       </button>
     </form>
   );
 };
 
-export default AddReviewLayout;
+export default UpdateReviewLayout;

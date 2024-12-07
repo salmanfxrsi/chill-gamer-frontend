@@ -1,23 +1,34 @@
 import PropTypes from "prop-types";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
+import { Bounce, toast } from "react-toastify";
 
-const MyReviewsCard = ({ review, index, setMyReviews, data }) => {
+const MyReviewsCard = ({ review, index, setMyReviews, myReviews }) => {
   const { _id, coverImage, gameTitle, rating, genre } = review;
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/delete-reviews/${id}`,{
-        method: 'DELETE'
+    fetch(`https://chill-gamer-server-one.vercel.app/delete-reviews/${id}`, {
+      method: "DELETE",
     })
-    .then(res => res.json())
-    .then(result => {
-        if(result.deletedCount > 0){
-            alert('Deleted Successfully')
-            setMyReviews(data.filter(review=>review._id !== id))
-        }
-    })
-  }
+      .then(res => res.json())
+      .then(result => {
+        setMyReviews(myReviews.filter((review) => review._id != id));
+        console.log(result);
+        toast.warning("Review Deleted!", {
+          position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+        });
+      });
+  };
 
   return (
     <tr>
@@ -44,12 +55,15 @@ const MyReviewsCard = ({ review, index, setMyReviews, data }) => {
         />
       </td>
       <th>
-        <button className="text-white text-lg">
+        <Link to={`/update-review/${_id}`} className="text-white text-lg">
           <FaEdit></FaEdit>
-        </button>
+        </Link>
       </th>
       <th>
-        <button onClick={()=>handleDelete(_id)} className="text-white text-xl">
+        <button
+          onClick={() => handleDelete(_id)}
+          className="text-white text-xl"
+        >
           <AiFillDelete />
         </button>
       </th>
@@ -60,8 +74,8 @@ const MyReviewsCard = ({ review, index, setMyReviews, data }) => {
 MyReviewsCard.propTypes = {
   review: PropTypes.object,
   index: PropTypes.number,
-  data: PropTypes.object,
-  setMyReviews: PropTypes.func
+  myReviews: PropTypes.array,
+  setMyReviews: PropTypes.func,
 };
 
 export default MyReviewsCard;

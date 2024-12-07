@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import SwapButton from "./SwapButton";
 
 const Navbar = () => {
-  const email = "talhaxprivate@gmail.com"
+  const email = "rumaxprivate@gmail.com"
 
   const links = (
     <>

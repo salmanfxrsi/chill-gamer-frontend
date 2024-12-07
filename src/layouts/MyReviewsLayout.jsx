@@ -26,7 +26,7 @@ const MyReviewsLayout = () => {
         <tbody>
           {myReviews.map((review, index) => (
             <MyReviewsCard
-              key={review.id}
+              key={review._id}
               index={index}
               review={review}
               setMyReviews={setMyReviews}

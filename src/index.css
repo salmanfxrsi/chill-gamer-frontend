@@ -23,8 +23,8 @@
     background-position: center;
 }
 
-.bg-add-review {
-    background-image: url('./assets/bg-header.jpg');
+.bg-form {
+    background-color: black;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
