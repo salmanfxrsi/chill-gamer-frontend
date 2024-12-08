@@ -1,10 +1,16 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import SwapButton from "./SwapButton";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-  const { handleSignOut, user } = useContext(AuthContext);
+  const { userSignOut, user } = useContext(AuthContext);
+  const navigate = useNavigate()
+
+  const handleSignOut = () => {
+    userSignOut()
+    navigate('/')
+  }
 
   const links = (
     <>
@@ -12,7 +18,7 @@ const Navbar = () => {
       <NavLink to={"/reviews"}>All Reviews</NavLink>
       <NavLink to={"/add-review"}>Add Review</NavLink>
       <NavLink to={`/my-reviews/${user?.email}`}>My Reviews</NavLink>
-      <NavLink to={"/game-watchList"}>Game WatchList</NavLink>
+      <NavLink to={`/watchList/${user?.email}`}>Game WatchList</NavLink>
     </>
   );
 

@@ -10,6 +10,7 @@ import UpdateReviewLayout from "../layouts/UpdateReviewLayout";
 import RegistrationFormLayout from "../layouts/RegistrationFormLayout";
 import LoginFormLayout from "../layouts/LoginFormLayout";
 import PrivateRoute from "./PrivateRoutes";
+import WishlistLayout from "../layouts/WishlistLayout";
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
           path: "/my-reviews/:email",
           element: <PrivateRoute><MyReviewsLayout></MyReviewsLayout></PrivateRoute>,
           loader: ({ params }) => fetch(`https://chill-gamer-server-one.vercel.app/my-reviews/${params.email}`),
+        },
+        {
+          path: "/watchList/:email",
+          element: <PrivateRoute><WishlistLayout></WishlistLayout></PrivateRoute>,
+          loader: ({ params }) => fetch(`https://chill-gamer-server-one.vercel.app/wishlist/${params.email}`),
         },
         {
           path: "/update-review/:id",

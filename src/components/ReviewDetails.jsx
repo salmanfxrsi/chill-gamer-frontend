@@ -1,19 +1,51 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import ReactStars from "react-stars";
+import { AuthContext } from "../provider/AuthProvider";
+import { Bounce, toast } from "react-toastify";
 
-const ReviewDetails = (id) => {
+const ReviewDetails = () => {
+  const { user } = useContext(AuthContext);
+
   useEffect(() => {
     document.title = `Chill Gamer - ${gameTitle}`;
   }, []);
 
   const handleWatchLater = () => {
-    fetch(`/reviews/${id}`, {
-      method: "PATCH",
+    const gameData = {
+      _id: _id,
+      coverImage: coverImage,
+      gameTitle: gameTitle,
+      reviewDescription: reviewDescription,
+      rating: rating,
+      publishingYear: publishingYear,
+      genre: genre,
+      email: email,
+      userName: userName,
+      wisherEmail: user.email,
+    };
+    fetch('https://chill-gamer-server-one.vercel.app/wishlist',{
+      method: 'POST',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json'
       },
-      body: JSON.stringify(true),
+      body: JSON.stringify(gameData)
+    })
+    .then(response => response.json())
+    .then(result => {
+      if(result.acknowledged){
+        toast.success("Added In Your Wishlist!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
+      }
     });
   };
 

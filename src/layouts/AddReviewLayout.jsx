@@ -52,7 +52,6 @@ const AddReviewLayout = () => {
             theme: "dark",
             transition: Bounce,
           });
-          console.log(result);
         }
       });
   };

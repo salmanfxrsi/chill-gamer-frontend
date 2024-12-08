@@ -49,8 +49,8 @@ const AuthProvider = ({ children }) => {
   }
 
   // signout user
-  const handleSignOut = () => {
-    signOut(auth)
+  const userSignOut = () => {
+    return signOut(auth)
   };
 
   // onAuthStateChanged
@@ -75,7 +75,7 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     githubLogin,
     manageProfile,
-    handleSignOut,
+    userSignOut,
   };
 
   return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
