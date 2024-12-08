@@ -7,6 +7,8 @@ import AllReviewsLayout from "../layouts/AllReviewsLayout";
 import ReviewDetails from "../components/ReviewDetails";
 import MyReviewsLayout from "../layouts/MyReviewsLayout";
 import UpdateReviewLayout from "../layouts/UpdateReviewLayout";
+import RegistrationFormLayout from "../layouts/RegistrationFormLayout";
+import LoginFormLayout from "../layouts/LoginFormLayout";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
           path: "/update-review/:id",
           element: <UpdateReviewLayout></UpdateReviewLayout>,
           loader: ({ params }) => fetch(`https://chill-gamer-server-one.vercel.app/reviews/${params.id}`),
+        },
+        {
+          path: "/registration",
+          element: <RegistrationFormLayout></RegistrationFormLayout>,
+        },
+        {
+          path: "/login",
+          element: <LoginFormLayout></LoginFormLayout>,
         },
       ]
     },

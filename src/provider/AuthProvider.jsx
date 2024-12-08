@@ -1,39 +1,79 @@
-import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { createContext } from "react";
+import {
+  createUserWithEmailAndPassword,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.config";
 import PropTypes from "prop-types";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  console.log(user)
 
-    const createUser = (email,password) => {
-        return createUserWithEmailAndPassword(auth,email,password)
+  // create user with email and password
+  const createUser = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  // login user
+  const loginUser = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  // google login
+  const googleProvider = new GoogleAuthProvider();
+  const googleLogin = () => {
+    return signInWithPopup(auth, googleProvider);
+  };
+
+  // github login
+  const githubProvider = new GithubAuthProvider();
+  const githubLogin = () => {
+    return signInWithPopup(auth, githubProvider)
+  };
+
+  // signout user
+  const handleSignOut = () => {
+    signOut(auth)
+  };
+
+  // onAuthStateChanged
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+
+    return () => {
+      unsubscribe();
     };
+  }, []);
 
-    const googleProvider = new GoogleAuthProvider();
+  const info = {
+    user,
+    setUser,
+    loading,
+    setLoading,
+    createUser,
+    loginUser,
+    googleLogin,
+    githubLogin,
+    handleSignOut,
+  };
 
-    const googleLogin = () => {
-        return signInWithPopup(googleProvider)
-    };
-
-    const githubProvider = new GithubAuthProvider();
-
-    const githubLogin = () => {
-        return signInWithPopup(githubProvider)
-    };
-
-    const info =  {
-        createUser,
-        googleLogin,
-        githubLogin,
-    }
-
-    return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
 };
 
 AuthProvider.propTypes = {
-    children: PropTypes.element
-}
+  children: PropTypes.element,
+};
 
 export default AuthProvider;

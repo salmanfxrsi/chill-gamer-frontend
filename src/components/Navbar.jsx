@@ -1,8 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import SwapButton from "./SwapButton";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-  const email = "rumaxprivate@gmail.com"
+  const email = "rumaxprivate@gmail.com";
+  const { handleSignOut, user } = useContext(AuthContext);
 
   const links = (
     <>
@@ -62,15 +65,26 @@ const Navbar = () => {
           <SwapButton></SwapButton>
           <div
             className="tooltip tooltip-warning tooltip-bottom mt-2"
-            data-tip="Salman Farsi"
+            data-tip={user?.displayName}
           >
             <div className="avatar online hover:cursor-pointer">
               <div className="w-12 rounded-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                <img src={user?.photoURL} />
               </div>
             </div>
           </div>
-          <Link className="btn btn-outline btn-warning">Login</Link>
+          {user ? (
+            <button
+              onClick={handleSignOut}
+              className="btn btn-outline btn-warning"
+            >
+              LogOut
+            </button>
+          ) : (
+            <Link to={"/login"} className="btn btn-outline btn-warning">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
