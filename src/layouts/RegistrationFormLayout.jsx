@@ -8,7 +8,6 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const RegistrationFormLayout = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
   const { googleLogin, githubLogin, createUser, setUser } =
     useContext(AuthContext);
 
@@ -29,7 +28,19 @@ const RegistrationFormLayout = () => {
           transition: Bounce,
         });
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        toast.error(error.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
+      });
   };
 
   //   handle github login
@@ -49,7 +60,19 @@ const RegistrationFormLayout = () => {
           transition: Bounce,
         });
       })
-      .catch((error) => setError(error.message));
+      .catch((error) => {
+        toast.error(error.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
+      });
   };
 
   // login user with email and password
@@ -73,7 +96,19 @@ const RegistrationFormLayout = () => {
           transition: Bounce,
         });
       })
-      .catch((error) => setError(error.message));
+      .catch((error) => {
+        toast.error(error.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
+      });
   };
 
   return (
@@ -147,9 +182,6 @@ const RegistrationFormLayout = () => {
               )}
             </button>
           </div>
-
-          {/* Error Messages */}
-          <p className="text-red-500 font-black text-sm">{error && error}</p>
 
           {/* Register Button */}
           <button

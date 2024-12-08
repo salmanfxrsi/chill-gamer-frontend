@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { Bounce, toast } from "react-toastify";
+import { AuthContext } from "../provider/AuthProvider";
 
 const UpdateReviewLayout = () => {
   const genres = ["Action", "RPG", "Adventure", "Strategy", "Sports"];
@@ -16,6 +17,8 @@ const UpdateReviewLayout = () => {
     email,
     userName,
   } = data;
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   useEffect(() => {
     document.title = "Chill Gamer - Update Review";
@@ -63,6 +66,7 @@ const UpdateReviewLayout = () => {
             theme: "dark",
             transition: Bounce,
           });
+          navigate(`/my-reviews/${user?.email}`)
         } else {
           toast.warning("Change Something For Update!", {
             position: "top-right",
@@ -185,7 +189,7 @@ const UpdateReviewLayout = () => {
           <input
             type="email"
             name="email"
-            value={"rumaxprivate@gmail.com"}
+            value={user?.email}
             readOnly
             className="w-full p-2 border rounded bg-gray-200 cursor-not-allowed"
             defaultValue={email}
@@ -197,7 +201,7 @@ const UpdateReviewLayout = () => {
           <input
             type="text"
             name="userName"
-            value={"rumaakther"}
+            value={user.displayName}
             readOnly
             className="w-full p-2 border rounded bg-gray-200 cursor-not-allowed"
             defaultValue={userName}

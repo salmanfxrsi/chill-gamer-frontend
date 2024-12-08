@@ -4,16 +4,15 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-  const email = "rumaxprivate@gmail.com";
   const { handleSignOut, user } = useContext(AuthContext);
 
   const links = (
     <>
       <NavLink to={"/"}>Home</NavLink>
       <NavLink to={"/reviews"}>All Reviews</NavLink>
-      <NavLink to={"/add-review"}>Add Review</NavLink>
-      <NavLink to={`/my-reviews/${email}`}>My Reviews</NavLink>
-      <NavLink to={"/game-watchList"}>Game WatchList</NavLink>
+      {user&&<NavLink to={"/add-review"}>Add Review</NavLink>}
+      {user&&<NavLink to={`/my-reviews/${user?.email}`}>My Reviews</NavLink>}
+      {user&&<NavLink to={"/game-watchList"}>Game WatchList</NavLink>}
     </>
   );
 
@@ -50,7 +49,7 @@ const Navbar = () => {
             </div>
           </div>
           <Link className="text-3xl text-white font-bold">
-            <span className="bg-gradient-to-r from-[#FFC536] to-black text-transparent bg-clip-text">
+            <span className="text-warning">
               Chill
             </span>
             Gamer
@@ -67,11 +66,13 @@ const Navbar = () => {
             className="tooltip tooltip-warning tooltip-bottom mt-2"
             data-tip={user?.displayName}
           >
-            <div className="avatar online hover:cursor-pointer">
-              <div className="w-12 rounded-full">
-                <img src={user?.photoURL} />
+            {user && (
+              <div className="avatar online hover:cursor-pointer">
+                <div className="w-12 rounded-full">
+                  <img src={user?.photoURL} />
+                </div>
               </div>
-            </div>
+            )}
           </div>
           {user ? (
             <button

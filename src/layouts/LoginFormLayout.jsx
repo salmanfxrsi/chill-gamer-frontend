@@ -6,7 +6,6 @@ import { Bounce, toast } from "react-toastify";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const LoginFormLayout = () => {
-  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { googleLogin, githubLogin, loginUser, setUser } =
     useContext(AuthContext);
@@ -28,7 +27,19 @@ const LoginFormLayout = () => {
           transition: Bounce,
         });
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => {
+        toast.error(error.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
+      });
   };
 
   //   handle github login
@@ -48,7 +59,19 @@ const LoginFormLayout = () => {
           transition: Bounce,
         });
       })
-      .catch((error) => setError(error.message));
+      .catch((error) => {
+        toast.error(error.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
+      });
   };
 
   // login user with email and password
@@ -59,7 +82,19 @@ const LoginFormLayout = () => {
     const password = form.password.value;
     loginUser(email, password)
       .then((result) => setUser(result.user))
-      .catch((error) => setError(error.message));
+      .catch((error) => {
+        toast.error(error.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
+      });
   };
 
   return (
@@ -86,7 +121,7 @@ const LoginFormLayout = () => {
                 Password
               </label>
               <input
-                type="text"
+                type={showPassword?"text":"password"}
                 name="password"
                 className="w-full p-2 border rounded"
                 placeholder="Enter your password"
@@ -96,7 +131,7 @@ const LoginFormLayout = () => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-10 text-gray-500 hover:text-indigo-500 focus:outline-none"
+              className="absolute right-3 top-10 text-black font-black"
             >
               {showPassword ? (
                 <AiOutlineEyeInvisible size={20} />
@@ -105,9 +140,6 @@ const LoginFormLayout = () => {
               )}
             </button>
           </div>
-
-          {/* Error Messages */}
-          <p className="text-red-500 font-black text-sm">{error && error}</p>
 
           {/* Register Button */}
           <button

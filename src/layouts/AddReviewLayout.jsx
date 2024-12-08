@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Bounce, toast } from "react-toastify";
+import { AuthContext } from "../provider/AuthProvider";
 
 const AddReviewLayout = () => {
   const genres = ["Action", "RPG", "Adventure", "Strategy", "Sports"];
+  const { user } = useContext(AuthContext);
 
   useEffect(()=>{
     document.title = "Chill Gamer - Add Review"
@@ -151,7 +153,7 @@ const AddReviewLayout = () => {
           <input
             type="email"
             name="email"
-            value={"rumaxprivate@gmail.com"}
+            value={user?.email}
             readOnly
             className="w-full p-2 border rounded bg-gray-200 cursor-not-allowed"
           />
@@ -162,7 +164,7 @@ const AddReviewLayout = () => {
           <input
             type="text"
             name="userName"
-            value={"rumaakther"}
+            value={user?.displayName}
             readOnly
             className="w-full p-2 border rounded bg-gray-200 cursor-not-allowed"
           />
