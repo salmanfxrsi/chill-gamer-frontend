@@ -11,7 +11,7 @@ const MyReviewsLayout = () => {
   }, []);
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto bg-black">
       <table className="table">
         <thead>
           <tr>

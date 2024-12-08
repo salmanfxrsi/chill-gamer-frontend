@@ -1,8 +1,24 @@
+import { useEffect, useState } from "react";
+
 const SwapButton = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      isDarkMode ? "dark" : "light"
+    );
+  }, [isDarkMode]);
+
+  const handleToggle = () => {
+    setIsDarkMode(!isDarkMode);
+    console.log(isDarkMode);
+  };
+
   return (
     <label className="swap swap-rotate text-white">
       {/* this hidden checkbox controls the state */}
-      <input type="checkbox" />
+      <input type="checkbox" checked={isDarkMode} onChange={handleToggle} />
 
       {/* sun icon */}
       <svg

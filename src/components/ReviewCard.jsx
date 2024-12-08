@@ -6,7 +6,7 @@ const ReviewCard = ({ review }) => {
   const { _id, coverImage, gameTitle, rating, genre } = review;
 
   return (
-    <div className="card shadow-xl">
+    <div className="card shadow-xl bg-black">
       <figure className="px-10 pt-10">
         <img
           src={coverImage}

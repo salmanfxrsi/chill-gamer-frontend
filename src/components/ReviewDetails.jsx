@@ -30,7 +30,7 @@ const ReviewDetails = (id) => {
   } = useLoaderData();
 
   return (
-    <div className="hero py-36">
+    <div className="hero py-36 bg-black">
       <div className="hero-content flex-col lg:flex-row">
         <img src={coverImage} className="max-w-sm rounded-lg shadow-2xl" />
         <div>
