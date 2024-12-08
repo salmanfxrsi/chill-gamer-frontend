@@ -10,9 +10,9 @@ const Navbar = () => {
     <>
       <NavLink to={"/"}>Home</NavLink>
       <NavLink to={"/reviews"}>All Reviews</NavLink>
-      {user&&<NavLink to={"/add-review"}>Add Review</NavLink>}
-      {user&&<NavLink to={`/my-reviews/${user?.email}`}>My Reviews</NavLink>}
-      {user&&<NavLink to={"/game-watchList"}>Game WatchList</NavLink>}
+      <NavLink to={"/add-review"}>Add Review</NavLink>
+      <NavLink to={`/my-reviews/${user?.email}`}>My Reviews</NavLink>
+      <NavLink to={"/game-watchList"}>Game WatchList</NavLink>
     </>
   );
 
@@ -49,9 +49,7 @@ const Navbar = () => {
             </div>
           </div>
           <Link className="text-3xl text-white font-bold">
-            <span className="text-warning">
-              Chill
-            </span>
+            <span className="text-warning">Chill</span>
             Gamer
           </Link>
         </div>
@@ -82,8 +80,13 @@ const Navbar = () => {
               LogOut
             </button>
           ) : (
-            <Link to={"/login"} className="btn btn-outline btn-warning">
+            <Link to={"/login"} className="btn btn-warning">
               Login
+            </Link>
+          )}
+          {!user && (
+            <Link to={"/registration"} className="btn btn-warning">
+              Register
             </Link>
           )}
         </div>

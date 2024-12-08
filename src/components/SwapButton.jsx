@@ -12,7 +12,6 @@ const SwapButton = () => {
 
   const handleToggle = () => {
     setIsDarkMode(!isDarkMode);
-    console.log(isDarkMode);
   };
 
   return (

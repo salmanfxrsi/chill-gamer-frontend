@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { Bounce, toast } from "react-toastify";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
@@ -9,12 +9,14 @@ const LoginFormLayout = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { googleLogin, githubLogin, loginUser, setUser } =
     useContext(AuthContext);
+  const navigate = useNavigate();
 
   //   handle google login
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => {
         setUser(result.user);
+        navigate('/');
         toast.success("Welcome back!", {
           position: "top-right",
           autoClose: 5000,
@@ -47,6 +49,7 @@ const LoginFormLayout = () => {
     githubLogin()
       .then((result) => {
         setUser(result.user);
+        navigate('/')
         toast.success("Welcome back!", {
           position: "top-right",
           autoClose: 5000,
@@ -81,7 +84,10 @@ const LoginFormLayout = () => {
     const email = form.email.value;
     const password = form.password.value;
     loginUser(email, password)
-      .then((result) => setUser(result.user))
+      .then((result) => {
+        setUser(result.user);
+        navigate('/')
+      })
       .catch((error) => {
         toast.error(error.message, {
           position: "top-right",
@@ -98,7 +104,7 @@ const LoginFormLayout = () => {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center bg-black">
       <div className="lg:w-full w-11/12 max-w-lg p-6 rounded-lg shadow-lg bg-winter">
         <h2 className="text-3xl font-bold text-center text-white">Login</h2>
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">

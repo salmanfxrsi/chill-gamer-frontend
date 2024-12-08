@@ -2,14 +2,15 @@
 import { useContext, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Bounce, toast } from "react-toastify";
 import { AuthContext } from "../provider/AuthProvider";
 
 const RegistrationFormLayout = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { googleLogin, githubLogin, createUser, setUser } =
+  const { googleLogin, githubLogin, createUser, setUser, manageProfile } =
     useContext(AuthContext);
+  const navigate = useNavigate();
 
   //   handle google login
   const handleGoogleLogin = () => {
@@ -79,11 +80,46 @@ const RegistrationFormLayout = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+    const username = form.username.value;
+    const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
+    // Password must be more more than 5 Letters
+    if (password.length < 6) {
+      toast.error("Length must be at least 6 character", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      return;
+    }
+
+    // Regex of password must contain at least one uppercase and one lowercase letter.
+    if (!/^(?=.*[A-Z])(?=.*[a-z]).*$/.test(password)) {
+      toast.error("Password must have both uppercase and lowercase letters.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      return;
+    }
     createUser(email, password)
       .then((result) => {
-        setUser(result.user);
+        setUser({ ...result.user, displayName: username, photoURL: photoURL });
+        manageProfile(username, photoURL);
+        e.target.reset();
         toast.success("Register successfully!", {
           position: "top-right",
           autoClose: 5000,
@@ -95,6 +131,7 @@ const RegistrationFormLayout = () => {
           theme: "dark",
           transition: Bounce,
         });
+        navigate('/')
       })
       .catch((error) => {
         toast.error(error.message, {
@@ -112,7 +149,7 @@ const RegistrationFormLayout = () => {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center bg-black">
       <div className="lg:w-full w-11/12 max-w-lg p-6 rounded-lg shadow-lg bg-winter">
         <h2 className="text-3xl font-bold text-center text-white">Register</h2>
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">

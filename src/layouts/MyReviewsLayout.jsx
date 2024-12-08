@@ -11,7 +11,7 @@ const MyReviewsLayout = () => {
   }, []);
 
   return (
-    <div className="overflow-x-auto bg-black">
+    <div className="overflow-x-auto bg-black calc(100vh - 467px)"  style={{ height: "calc(100vh - 447px)" }}>
       <table className="table">
         <thead>
           <tr>
