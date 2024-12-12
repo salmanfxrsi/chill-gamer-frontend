@@ -64,9 +64,9 @@ const AllReviewsLayout = () => {
     } else if (option === "rating-desc") {
       sortedReviews.sort((a, b) => b.rating - a.rating); // Sort by rating (high to low)
     } else if (option === "year-asc") {
-      sortedReviews.sort((a, b) => a.year - b.year); // Sort by year (old to new)
+      sortedReviews.sort((a, b) => a.publishingYear - b.publishingYear); // Sort by year (old to new)
     } else if (option === "year-desc") {
-      sortedReviews.sort((a, b) => b.year - a.year); // Sort by year (new to old)
+      sortedReviews.sort((a, b) => b.publishingYear - a.publishingYear); // Sort by year (new to old)
     }
 
     setFilteredReviews(sortedReviews); 

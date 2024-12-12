@@ -41,6 +41,7 @@ const AddReviewLayout = () => {
       .then((response) => response.json())
       .then((result) => {
         if (result.acknowledged) {
+          e.target.reset()
           toast.success("Wow review added!", {
             position: "top-right",
             autoClose: 5000,

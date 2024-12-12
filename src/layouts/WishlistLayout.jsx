@@ -18,7 +18,7 @@ const WishlistLayout = () => {
             <th className="text-white">Name</th>
             <th className="text-white">Rating</th>
             <th className="text-white">Publishing Year</th>
-            <th className="text-white">Delete</th>
+            <th className="text-white"></th>
             <th className="text-white"></th>
           </tr>
         </thead>
