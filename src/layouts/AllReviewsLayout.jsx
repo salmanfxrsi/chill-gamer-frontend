@@ -6,10 +6,10 @@ const AllReviewsLayout = () => {
   const [filteredReviews, setFilteredReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedGenre, setSelectedGenre] = useState(""); 
-  const [sortOption, setSortOption] = useState(""); 
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const [sortOption, setSortOption] = useState("");
 
-  const genres = ["Action", "RPG", "Adventure", "Strategy", "Sports"]; 
+  const genres = ["Action", "RPG", "Adventure", "Strategy", "Sports"];
 
   useEffect(() => {
     document.title = "Chill Gamer - All Reviews";
@@ -25,7 +25,7 @@ const AllReviewsLayout = () => {
         }
         const data = await response.json();
         setReviews(data);
-        setFilteredReviews(data); 
+        setFilteredReviews(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -50,14 +50,14 @@ const AllReviewsLayout = () => {
   };
 
   const resetFilter = () => {
-    setSelectedGenre(""); 
-    setFilteredReviews(reviews); 
+    setSelectedGenre("");
+    setFilteredReviews(reviews);
   };
 
   // Handle Sort
   const handleSortChange = (option) => {
     setSortOption(option);
-    let sortedReviews = [...filteredReviews]; 
+    let sortedReviews = [...filteredReviews];
 
     if (option === "rating-asc") {
       sortedReviews.sort((a, b) => a.rating - b.rating); // Sort by rating (low to high)
@@ -69,7 +69,7 @@ const AllReviewsLayout = () => {
       sortedReviews.sort((a, b) => b.publishingYear - a.publishingYear); // Sort by year (new to old)
     }
 
-    setFilteredReviews(sortedReviews); 
+    setFilteredReviews(sortedReviews);
   };
 
   if (loading) {
@@ -83,43 +83,45 @@ const AllReviewsLayout = () => {
   return (
     <div className="py-24">
       {/* Filter and Sort Controls */}
-      <div className="flex justify-center mb-6 space-x-4">
-        {/* Genre Filter Dropdown */}
-        <select
-          className="border px-4 py-2 rounded-md"
-          value={selectedGenre}
-          onChange={(e) => handleGenreChange(e.target.value)}
-        >
-          <option value="">Filter by Genre</option>
-          {genres.map((genre, index) => (
-            <option key={index} value={genre}>
-              {genre}
-            </option>
-          ))}
-        </select>
-        <button
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-          onClick={resetFilter}
-        >
-          Reset Filter
-        </button>
+      <div className="container mb-16 space-x-4 mx-auto flex justify-between">
+        <div>
+          {/* Genre Filter Dropdown */}
+          <select
+            className="border px-4 py-2 rounded-md mr-4"
+            value={selectedGenre}
+            onChange={(e) => handleGenreChange(e.target.value)}
+          >
+            <option value="">Filter by Genre</option>
+            {genres.map((genre, index) => (
+              <option key={index} value={genre}>
+                {genre}
+              </option>
+            ))}
+          </select>
 
-        {/* Sort Dropdown */}
-        <select
-          className="border px-4 py-2 rounded-md"
-          value={sortOption}
-          onChange={(e) => handleSortChange(e.target.value)}
-        >
-          <option value="">Sort By</option>
-          <option value="rating-asc">Rating (Low to High)</option>
-          <option value="rating-desc">Rating (High to Low)</option>
-          <option value="year-asc">Year (Old to New)</option>
-          <option value="year-desc">Year (New to Old)</option>
-        </select>
+          {/* Sort Dropdown */}
+          <select
+            className="border px-4 py-2 rounded-md"
+            value={sortOption}
+            onChange={(e) => handleSortChange(e.target.value)}
+          >
+            <option value="">Sort By</option>
+            <option value="rating-asc">Rating (Low to High)</option>
+            <option value="rating-desc">Rating (High to Low)</option>
+            <option value="year-asc">Year (Old to New)</option>
+            <option value="year-desc">Year (New to Old)</option>
+          </select>
+        </div>
+
+        <div>
+          <button className="btn btn-warning" onClick={resetFilter}>
+            Reset Filter
+          </button>
+        </div>
       </div>
 
       {/* Reviews Section */}
-      <div className="container mx-auto grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 justify-center gap-12">
+      <div className="container mx-auto grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 justify-center gap-6">
         {filteredReviews.length === 0 ? (
           <div className="text-center col-span-4 py-12">
             No reviews found for this genre

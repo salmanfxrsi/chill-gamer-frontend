@@ -6,33 +6,30 @@ const ReviewCard = ({ review }) => {
   const { _id, coverImage, gameTitle, rating, genre } = review;
 
   return (
-    <div className="card shadow-xl bg-black">
-      <figure className="px-10 pt-10">
+    <div className="card shadow-xl uppercase">
+      <figure className="">
         <img
           src={coverImage}
           alt="Shoes"
-          className="rounded-xl h-[222px] w-full"
+          className="rounded h-[222px] w-full"
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title text-white text-2xl">{gameTitle}</h2>
-        <small className="card-title text-white text-base">
-          Category: {genre}
-        </small>
+        <h2 className="card-title">
+          {gameTitle}
+          <div className="badge badge-warning">{genre}</div>
+        </h2>
+
         <div className="flex items-center gap-2">
-        <ReactStars
-          value={rating}
-          onChange={false}
-          size={24}
-          color2={"#ffd700"}
-        />
-        <h1 className="text-warning">{rating}</h1>
+          <ReactStars
+            value={rating}
+            onChange={false}
+            size={24}
+          />
+          <h1 className="light:text-black font-bold dark:text-white">{rating}</h1>
         </div>
         <div className="card-actions">
-          <Link
-            to={`/reviews/${_id}`}
-            className="mt-4 btn btn-warning btn-outline"
-          >
+          <Link to={`/reviews/${_id}`} className="mt-2 btn btn-warning">
             Explore Details
           </Link>
         </div>
