@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/reviews/:id",
-          element: <ReviewDetails></ReviewDetails>,
+          element: <PrivateRoute><ReviewDetails></ReviewDetails></PrivateRoute>,
           loader: ({ params }) => fetch(`https://chill-gamer-server-one.vercel.app/reviews/${params.id}`),
         },
         {
