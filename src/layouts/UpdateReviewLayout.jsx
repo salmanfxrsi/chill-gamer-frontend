@@ -55,7 +55,7 @@ const UpdateReviewLayout = () => {
       .then((response) => response.json())
       .then((result) => {
         if (result.modifiedCount > 0) {
-          toast.success("Review Updated!", {
+          toast.success("Review Updated", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -68,7 +68,7 @@ const UpdateReviewLayout = () => {
           });
           navigate(`/my-reviews/${user?.email}`)
         } else {
-          toast.warning("Change Something For Update!", {
+          toast.warning("Change Something For Update", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -88,55 +88,52 @@ const UpdateReviewLayout = () => {
       onSubmit={handleSubmit}
       className="p-4 w-11/12 lg:container mx-auto bg-form shadow-md rounded my-24 bg-opacity-80"
     >
-      <h2 className="text-2xl font-extrabold mb-10 text-center text-warning">
+      <h2 className="text-2xl font-extrabold mb-16 text-center dark:text-white light:text-black uppercase">
         Update {gameTitle}
       </h2>
 
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
         <div className="mb-4">
-          <label className="block text-white font-medium mb-2">
+          <label className="block dark:text-white light:text-black font-medium mb-2">
             Game Cover Image
           </label>
           <input
             type="url"
             name="coverImage"
             className="w-full p-2 border rounded"
-            placeholder="https://example.com/game-cover.jpg"
             required
             defaultValue={coverImage}
           />
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">
+          <label className="block font-medium mb-2 dark:text-white light:text-black">
             Game Title
           </label>
           <input
             type="text"
             name="gameTitle"
             className="w-full p-2 border rounded"
-            placeholder="Enter game title"
             required
             defaultValue={gameTitle}
           />
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">
+          <label className="block font-medium mb-2 dark:text-white light:text-black">
             Review Description
           </label>
           <textarea
             name="reviewDescription"
             className="w-full p-2 border rounded"
             rows="4"
-            placeholder="Write your detailed review here..."
             required
             defaultValue={reviewDescription}
           ></textarea>
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">Rating</label>
+          <label className="block font-medium mb-2 dark:text-white light:text-black">Rating</label>
           <input
             type="text"
             name="rating"
@@ -150,21 +147,20 @@ const UpdateReviewLayout = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">
+          <label className="block font-medium mb-2 dark:text-white light:text-black">
             Publishing Year
           </label>
           <input
             type="number"
             name="publishingYear"
             className="w-full p-2 border rounded"
-            placeholder="e.g., 2024"
             required
             defaultValue={publishingYear}
           />
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">Genre</label>
+          <label className="block font-medium mb-2 dark:text-white light:text-black">Genre</label>
           <select
             name="genre"
             className="w-full p-2 border rounded"
@@ -183,7 +179,7 @@ const UpdateReviewLayout = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">
+          <label className="block font-medium mb-2 dark:text-white light:text-black">
             User Email
           </label>
           <input
@@ -197,7 +193,7 @@ const UpdateReviewLayout = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">User Name</label>
+          <label className="block font-medium mb-2 dark:text-white light:text-black">User Name</label>
           <input
             type="text"
             name="userName"
@@ -208,7 +204,7 @@ const UpdateReviewLayout = () => {
           />
         </div>
       </div>
-      <button type="submit" className="btn btn-warning btn-outline w-full">
+      <button type="submit" className="mt-8 uppercase btn btn-warning w-full">
         Update Review
       </button>
     </form>

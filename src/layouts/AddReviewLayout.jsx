@@ -166,7 +166,7 @@ const AddReviewLayout = () => {
           />
         </div>
       </div>
-      <button type="submit" className="btn btn-warning w-full mt-8">
+      <button type="submit" className="btn uppercase btn-warning w-full mt-8">
         Submit Review
       </button>
     </form>

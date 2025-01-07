@@ -11,16 +11,16 @@ const MyReviewsLayout = () => {
   }, []);
 
   return (
-    <div className="overflow-x-auto bg-black calc(100vh - 467px)"  style={{ height: "calc(100vh - 447px)" }}>
+    <div className="overflow-x-auto my-6 calc(100vh - 467px)"  style={{ height: "calc(100vh - 447px)" }}>
       <table className="table">
         <thead>
           <tr>
-            <th className="text-white">Serial</th>
-            <th className="text-white">Name</th>
-            <th className="text-white">Rating</th>
-            <th className="text-white">Update</th>
-            <th className="text-white">Delete</th>
-            <th className="text-white"></th>
+            <th className="dark:text-white light:text-black">Serial</th>
+            <th className="dark:text-white light:text-black">Name</th>
+            <th className="dark:text-white light:text-black">Rating</th>
+            <th className="dark:text-white light:text-black">Update</th>
+            <th className="dark:text-white light:text-black">Delete</th>
+            <th className="dark:text-white light:text-black"></th>
           </tr>
         </thead>
         <tbody>
