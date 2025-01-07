@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Stat = ({ data }) => {
+  const { user } = useContext(AuthContext)
+
   return (
-    <div className="stats shadow bg-black">
+    <div className="stats shadow w-full">
       <div className="stat">
         <div className="stat-figure text-warning">
           <svg
@@ -19,9 +23,9 @@ const Stat = ({ data }) => {
             ></path>
           </svg>
         </div>
-        <div className="stat-title text-white">Total Reviews</div>
+        <div className="stat-title light:text-black dark:text-white">Total Reviews</div>
         <div className="stat-value text-warning">{data.length}</div>
-        <div className="stat-desc text-white">See reviews and chill here</div>
+        <div className="stat-desc light:text-black dark:text-white">See reviews and chill here</div>
       </div>
 
       <div className="stat">
@@ -40,22 +44,21 @@ const Stat = ({ data }) => {
             ></path>
           </svg>
         </div>
-        <div className="stat-title text-white">Page Views</div>
-        <div className="stat-value text-warning">2.6M</div>
-        <div className="stat-desc text-white">21% more than last month</div>
+        <div className="stat-title light:text-black dark:text-white">Users</div>
+        <div className="stat-value text-warning">211</div>
+        <div className="stat-desc light:text-black dark:text-white">21% more than last month</div>
       </div>
 
       <div className="stat">
         <div className="stat-figure text-secondary">
-          {/* <div className="avatar online">
+          <div className="avatar online">
             <div className="w-16 rounded-full">
-              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              <img src={user?.photoURL} />
             </div>
-          </div> */}
+          </div>
         </div>
-        <div className="stat-value text-white">86%</div>
-        <div className="stat-title text-white">Growing Ratio</div>
-        <div className="stat-desc text-warning">More to come</div>
+        <div className="stat-value text-warning">{user?.displayName}</div>
+        <div className="stat-title light:text-black dark:text-white">{user?.email}</div>
       </div>
     </div>
   );

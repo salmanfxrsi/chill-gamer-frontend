@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Banner from "../components/Banner";
 import Slider from "../components/Slider";
 import FAQ from "../components/FAQ";
+import ExploreGameNow from "../components/ExploreGameNow";
 
 const HomeLayout = () => {
   const data = useLoaderData();
@@ -29,14 +30,17 @@ const HomeLayout = () => {
         ))}
       </section>
       <section className="flex justify-center pb-24 w-11/12 lg:container mx-auto">
-        <Stat data={data}></Stat>
-      </section>
-      <section className="flex justify-center pb-24 w-11/12 lg:container mx-auto">
         <Trending></Trending>
       </section>
       <section className="pb-24 w-11/12 lg:container mx-auto">
       <h1 className="dark:text-white text-center font-extrabold text-3xl mb-16 mt-8 uppercase">Frequently Asked Questions</h1>
         <FAQ></FAQ>
+      </section>
+      <section className="pb-24 w-11/12 lg:container mx-auto">
+        <ExploreGameNow></ExploreGameNow>
+      </section>
+      <section className="flex justify-center pb-24 w-11/12 lg:container mx-auto">
+        <Stat data={data}></Stat>
       </section>
     </div>
   );

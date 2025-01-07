@@ -2,6 +2,9 @@
 
 Welcome to **Chill Gamer**, a user-friendly game review application where users can explore, share, and manage game reviews. This repository contains the client-side code for the application.
 
+## Backend Repository
+[Backend Repository](https://github.com/salmanfxrsi/chill-gamer-backend)
+
 ### Live Site
 [Live Site](https://chill-gamer-e2b6a.web.app/)
 
