@@ -18,7 +18,7 @@ const LoginFormLayout = () => {
       .then((result) => {
         setUser(result.user);
         navigate('/');
-        toast.success("Welcome back!", {
+        toast.success("Welcome Back", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -57,10 +57,7 @@ const LoginFormLayout = () => {
         setUser(result.user);
         const user = { email: email }
         axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
-        .then(res => {
-          console.log(res.data)
-        })
-        // navigate('/')
+        navigate('/')
       })
       .catch((error) => {
         toast.error(error.message, {

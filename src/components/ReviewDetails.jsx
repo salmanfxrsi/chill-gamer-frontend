@@ -62,8 +62,8 @@ const ReviewDetails = () => {
   } = useLoaderData();
 
   return (
-    <div className="hero py-36 bg-black">
-      <div className="hero-content flex-col lg:flex-row">
+    <div className="hero py-36">
+      <div className="hero-content flex-col lg:flex-row gap-6">
         <img src={coverImage} className="max-w-sm rounded-lg shadow-2xl" />
         <div>
           <div className="flex gap-4 mb-4">
@@ -76,17 +76,17 @@ const ReviewDetails = () => {
             size={24}
             color2={"#ffd700"}
           />
-          <h1 className="text-5xl font-bold text-white">{gameTitle}</h1>
-          <small className="card-title text-white text-base mt-1">
+          <h1 className="text-5xl font-bold dark:text-white light:text-black">{gameTitle}</h1>
+          <small className="card-title dark:text-white light:text-black text-base mt-1">
             Category: {genre}
           </small>
-          <small className="card-title text-white text-base mt-1">
+          <small className="card-title dark:text-white light:text-black text-base mt-1">
             Published In: {publishingYear}
           </small>
-          <p className=" text-white mt-1">{reviewDescription}</p>
+          <p className=" dark:text-white light:text-black mt-1">{reviewDescription}</p>
           <button
             onClick={() => handleWatchLater(_id)}
-            className="btn btn-warning btn-outline mt-4"
+            className="btn btn-warning mt-4"
           >
             Watch Later
           </button>

@@ -19,12 +19,12 @@ const Banner = () => {
           user-friendly interface.
         </p>
         <div className="flex gap-4 mt-8">
-          <Link to={user? "/add-review" : "login"} className="btn btn-warning btn-outline">
+          <Link to={user? "/add-review" : "login"} className="btn btn-warning">
             {user? "Review Now" : "Login Now"}
           </Link>
           <Link
             to={"/reviews"}
-            className="btn btn-outline lg:text-white lg:border-white"
+            className="btn lg:text-black"
           >
             All Reviews
           </Link>

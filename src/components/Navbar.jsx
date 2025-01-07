@@ -5,20 +5,24 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
   const { userSignOut, user } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSignOut = () => {
-    userSignOut()
-    navigate('/')
-  }
+    userSignOut();
+    navigate("/");
+  };
 
   const links = (
     <>
       <NavLink to={"/"}>Home</NavLink>
       <NavLink to={"/reviews"}>All Reviews</NavLink>
-      <NavLink to={"/add-review"}>Add Review</NavLink>
-      <NavLink to={`/my-reviews/${user?.email}`}>My Reviews</NavLink>
-      <NavLink to={`/watchList/${user?.email}`}>Game WatchList</NavLink>
+      {user && (
+        <>
+          <NavLink to={"/add-review"}>Add Review</NavLink>
+          <NavLink to={`/my-reviews/${user?.email}`}>My Reviews</NavLink>
+          <NavLink to={`/watchList/${user?.email}`}>Game WatchList</NavLink>
+        </>
+      )}
     </>
   );
 
@@ -54,7 +58,7 @@ const Navbar = () => {
               {links}
             </div>
           </div>
-          <Link className="text-3xl text-white font-bold">
+          <Link to='/' className="text-3xl text-white font-bold uppercase hidden sm:block">
             <span className="text-warning">Chill</span>
             Gamer
           </Link>

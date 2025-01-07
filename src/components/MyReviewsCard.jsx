@@ -16,7 +16,7 @@ const MyReviewsCard = ({ review, index, setMyReviews, myReviews }) => {
       .then((result) => {
         setMyReviews(myReviews.filter((review) => review._id != id));
         console.log(result);
-        toast.warning("Review Deleted!", {
+        toast.success("Review Deleted", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
