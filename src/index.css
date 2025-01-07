@@ -23,13 +23,6 @@
     background-position: center;
 }
 
-.bg-form {
-    background-color: black;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
-}
-
 .bg-footer {
     background-image: url('./assets/bg-header.jpg');
     background-repeat: no-repeat;

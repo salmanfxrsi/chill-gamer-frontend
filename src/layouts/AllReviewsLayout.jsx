@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ReviewCard from "../components/ReviewCard";
+import Loading from "../components/Loading";
 
 const AllReviewsLayout = () => {
   const [reviews, setReviews] = useState([]);
@@ -73,7 +74,7 @@ const AllReviewsLayout = () => {
   };
 
   if (loading) {
-    return <div className="text-center py-24">Loading...</div>;
+    return <Loading></Loading>;
   }
 
   if (error) {
@@ -83,7 +84,7 @@ const AllReviewsLayout = () => {
   return (
     <div className="py-24">
       {/* Filter and Sort Controls */}
-      <div className="container mb-16 space-x-4 mx-auto flex justify-between">
+      <div className="w-11/12 lg:container mb-16 space-x-4 mx-auto flex justify-between">
         <div>
           {/* Genre Filter Dropdown */}
           <select
@@ -121,7 +122,7 @@ const AllReviewsLayout = () => {
       </div>
 
       {/* Reviews Section */}
-      <div className="container mx-auto grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 justify-center gap-6">
+      <div className="w-11/12 lg:container mx-auto grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 justify-center gap-6">
         {filteredReviews.length === 0 ? (
           <div className="text-center col-span-4 py-12">
             No reviews found for this genre

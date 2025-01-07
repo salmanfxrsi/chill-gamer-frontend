@@ -42,7 +42,7 @@ const AddReviewLayout = () => {
       .then((result) => {
         if (result.acknowledged) {
           e.target.reset()
-          toast.success("Wow review added!", {
+          toast.success("Thanks For Your Review", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -62,52 +62,49 @@ const AddReviewLayout = () => {
       onSubmit={handleSubmit}
       className="p-4 w-11/12 lg:container mx-auto bg-form shadow-md rounded my-24 bg-opacity-80"
     >
-      <h2 className="text-2xl font-extrabold mb-10 text-center text-[#FFC536]">
-        Submit Game Review
+      <h2 className="uppercase text-2xl font-extrabold mb-16 text-center light:text-white dark:text-[#FFC536]">
+        Post Game Review
       </h2>
 
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
         <div className="mb-4">
-          <label className="block text-white font-medium mb-2">
+          <label className="block light:text-black dark:text-white font-medium mb-2">
             Game Cover Image
           </label>
           <input
             type="url"
             name="coverImage"
             className="w-full p-2 border rounded"
-            placeholder="https://example.com/game-cover.jpg"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">
+          <label className="block font-medium mb-2 light:text-black dark:text-white">
             Game Title
           </label>
           <input
             type="text"
             name="gameTitle"
             className="w-full p-2 border rounded"
-            placeholder="Enter game title"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">
+          <label className="block font-medium mb-2 light:text-black dark:text-white">
             Review Description
           </label>
           <textarea
             name="reviewDescription"
             className="w-full p-2 border rounded"
             rows="4"
-            placeholder="Write your detailed review here..."
             required
           ></textarea>
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">Rating</label>
+          <label className="block font-medium mb-2 light:text-black dark:text-white">Rating</label>
           <input
             type="text"
             name="rating"
@@ -120,20 +117,19 @@ const AddReviewLayout = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">
+          <label className="block font-medium mb-2 light:text-black dark:text-white">
             Publishing Year
           </label>
           <input
             type="number"
             name="publishingYear"
             className="w-full p-2 border rounded"
-            placeholder="e.g., 2024"
             required
           />
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">Genre</label>
+          <label className="block font-medium mb-2 light:text-black dark:text-white">Genre</label>
           <select name="genre" className="w-full p-2 border rounded" required>
             <option value="" disabled>
               Select Genre
@@ -147,7 +143,7 @@ const AddReviewLayout = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">
+          <label className="block font-medium mb-2 light:text-black dark:text-white">
             User Email
           </label>
           <input
@@ -160,7 +156,7 @@ const AddReviewLayout = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block font-medium mb-2 text-white">User Name</label>
+          <label className="block font-medium mb-2 light:text-black dark:text-white">User Name</label>
           <input
             type="text"
             name="userName"
@@ -170,7 +166,7 @@ const AddReviewLayout = () => {
           />
         </div>
       </div>
-      <button type="submit" className="btn btn-warning btn-outline w-full">
+      <button type="submit" className="btn btn-warning w-full mt-8">
         Submit Review
       </button>
     </form>
