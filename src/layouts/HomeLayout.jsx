@@ -3,6 +3,7 @@ import Stat from "../components/Stat";
 import ReviewCard from "../components/ReviewCard";
 import Trending from "../components/Trending";
 import { useEffect } from "react";
+import Banner from "../components/Banner";
 
 const HomeLayout = () => {
   const data = useLoaderData();
@@ -13,6 +14,9 @@ const HomeLayout = () => {
 
   return (
     <div>
+      <section className="bg-header">
+        <Banner></Banner>
+      </section>
       {/* <section className="w-11/12 lg:container mx-auto py-24">
         <Slider></Slider>
       </section> */}

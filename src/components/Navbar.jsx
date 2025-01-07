@@ -85,7 +85,7 @@ const Navbar = () => {
           {user ? (
             <button
               onClick={handleSignOut}
-              className="btn btn-outline btn-warning"
+              className="btn btn-warning"
             >
               LogOut
             </button>

@@ -24,7 +24,7 @@ const Banner = () => {
           </Link>
           <Link
             to={"/reviews"}
-            className="btn lg:text-black"
+            className="btn dark:text-white light:text-black"
           >
             All Reviews
           </Link>

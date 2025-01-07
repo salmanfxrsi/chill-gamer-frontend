@@ -1,13 +1,10 @@
-import { Outlet, useLocation } from "react-router-dom";
-import Banner from "../components/Banner";
+import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const MainLayout = () => {
-  const { pathname } = useLocation();
-
   return (
     <div>
       <ToastContainer
@@ -23,9 +20,8 @@ const MainLayout = () => {
         theme="light"
         transition= "Bounce"
       />
-      <header className="bg-header">
+      <header className="sticky top-0 z-50 bg-black">
         <Navbar></Navbar>
-        {pathname === "/" && <Banner></Banner>}
       </header>
       <main>
         <Outlet></Outlet>

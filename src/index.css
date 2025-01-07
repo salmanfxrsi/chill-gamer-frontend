@@ -23,12 +23,6 @@
     background-position: center;
 }
 
-.bg-footer {
-    background-image: url('./assets/bg-header.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top;
-}
 
 @tailwind base;
 @tailwind components;
