@@ -9,6 +9,7 @@ const Slider = () => {
 
   return (
     <>
+    <h1 className="dark:text-white text-center font-extrabold text-4xl mb-24 uppercase">Explore Games</h1>
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
