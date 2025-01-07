@@ -122,7 +122,7 @@ const AllReviewsLayout = () => {
       </div>
 
       {/* Reviews Section */}
-      <div className="w-11/12 lg:container mx-auto grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 justify-center gap-6">
+      <div className="w-11/12 lg:container mx-auto grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 justify-center gap-6">
         {filteredReviews.length === 0 ? (
           <div className="text-center col-span-4 py-12">
             No reviews found for this genre
